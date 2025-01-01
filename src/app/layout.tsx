@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   title: "Krishna Kapoor | AI Engineer & Creative Technologist",
   description: "Building intelligent systems, secure platforms, and immersive 3D experiences.",
   icons: {
-    icon: "/creative customs logotransparent  back_.png",
-    apple: "/creative customs logotransparent  back_.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
