@@ -119,7 +119,7 @@ export const Navigation = () => {
         <div className="hidden md:flex items-center gap-3 z-50">
           <PersonaToggle />
           <ThemeToggle />
-          <Link href="https://github.com/krishnakapoor" target="_blank" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
+          <Link href="https://github.com/krishna0605" target="_blank" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
             <Github size={20} />
           </Link>
           <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">

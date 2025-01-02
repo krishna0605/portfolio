@@ -100,7 +100,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                  {/* Social Links Row */}
                  <div className="flex items-center justify-center gap-6">
                     <Link 
-                       href="https://github.com/krishnakapoor" 
+                       href="https://github.com/krishna0605" 
                        target="_blank"
                        className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
                     >

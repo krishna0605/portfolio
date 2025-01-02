@@ -17,7 +17,7 @@ const footerLinks = [
   {
     title: "Connect",
     links: [
-      { label: "GitHub", href: "https://github.com/krishnakapoor" },
+      { label: "GitHub", href: "https://github.com/krishna0605" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/krishna-kapoor-517546270/" },
       { label: "Email", href: "mailto:creativesimulation1@gmail.com" },
     ],
@@ -55,7 +55,7 @@ export const Footer = () => {
               <Link href="mailto:creativesimulation1@gmail.com" className="text-foreground/60 hover:text-foreground transition-colors">
                 <Mail size={20} />
               </Link>
-              <Link href="https://github.com/krishnakapoor" target="_blank" className="text-foreground/60 hover:text-foreground transition-colors">
+              <Link href="https://github.com/krishna0605" target="_blank" className="text-foreground/60 hover:text-foreground transition-colors">
                 <Github size={20} />
               </Link>
               <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" className="text-foreground/60 hover:text-foreground transition-colors">
