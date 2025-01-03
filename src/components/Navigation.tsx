@@ -6,15 +6,16 @@ import { ArrowRight, Book, Box, Code, Cpu, Github, Layers, Terminal, Menu, X, Li
 import { ThemeToggle } from "./ThemeToggle";
 import { PersonaToggle } from "./PersonaToggle";
 import { MobileMenu } from "./MobileMenu";
+import { usePersona } from "./PersonaProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 
-// Portfolio Menu Data
+// Portfolio Menu Data with persona tags for projects
 const menuItems = {
   Projects: [
-    { title: "AI CodeMate", desc: "AI-powered code analysis platform", href: "#projects", icon: <Cpu /> },
-    { title: "Vuln Scanner", desc: "Automated security scanning", href: "#projects", icon: <Box /> },
-    { title: "ETS2 Mods", desc: "3D simulation assets", href: "#projects", icon: <Layers /> },
+    { title: "AI CodeMate", desc: "AI-powered code analysis platform", href: "#projects", icon: <Cpu />, persona: "engineer" as const },
+    { title: "Vuln Scanner", desc: "Automated security scanning", href: "#projects", icon: <Box />, persona: "engineer" as const },
+    { title: "ETS2 Mods", desc: "3D simulation assets", href: "#projects", icon: <Layers />, persona: "creative" as const },
   ],
   Skills: [
     { title: "AI/ML", desc: "LangChain, TensorFlow, RAG systems", href: "#skills", icon: <Book /> },
@@ -28,7 +29,7 @@ const menuItems = {
 };
 
    // Mega Menu Container
-   const NavDropdown = ({ items, isOpen }: { items: any[], isOpen: boolean }) => {
+   const NavDropdown = ({ items, isOpen, onItemClick }: { items: any[], isOpen: boolean, onItemClick?: (item: any) => void }) => {
    return (
       <AnimatePresence>
          {isOpen && (
@@ -45,6 +46,7 @@ const menuItems = {
                      <Link 
                         key={item.title} 
                         href={item.href}
+                        onClick={() => onItemClick?.(item)}
                         className={clsx(
                            "group block p-8 border-b border-r border-grid-line/50 transition-all duration-200 relative",
                            "hover:bg-black/5 dark:hover:bg-white/5"
@@ -71,6 +73,14 @@ const menuItems = {
 export const Navigation = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { setPersona } = usePersona();
+
+  // Handler to switch persona when clicking on project items
+  const handleProjectClick = (item: any) => {
+    if (item.persona) {
+      setPersona(item.persona);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-background/0 backdrop-blur-sm border-b border-white/10" onMouseLeave={() => setActiveItem(null)}>
@@ -142,6 +152,7 @@ export const Navigation = () => {
       <NavDropdown 
          isOpen={activeItem !== null && activeItem in menuItems} 
          items={activeItem && activeItem in menuItems ? menuItems[activeItem as keyof typeof menuItems] : []} 
+         onItemClick={handleProjectClick}
       />
 
       {/* Mobile Menu */}

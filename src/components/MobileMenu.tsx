@@ -7,6 +7,7 @@ import { ChevronDown, ChevronRight, Github, Linkedin, Mail, Download } from "luc
 import { clsx } from "clsx";
 import { PersonaToggle } from "./PersonaToggle";
 import { ThemeToggle } from "./ThemeToggle";
+import { usePersona } from "./PersonaProvider";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,9 +17,18 @@ interface MobileMenuProps {
 
 export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const { setPersona } = usePersona();
 
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  // Handler to switch persona when clicking on project items
+  const handleItemClick = (item: any) => {
+    if (item.persona) {
+      setPersona(item.persona);
+    }
+    onClose();
   };
 
   return (
@@ -69,7 +79,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                               <Link 
                                 key={item.title}
                                 href={item.href}
-                                onClick={onClose}
+                                onClick={() => handleItemClick(item)}
                                 className="block group"
                               >
                                 <div className="text-foreground/90 font-medium group-hover:text-blue-500 transition-colors flex items-center gap-2">
