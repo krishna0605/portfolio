@@ -103,6 +103,11 @@ export const ArticlesSection = () => {
                               <Github size={14} /> VIEW CODE
                             </a>
                           )}
+                          {(projects[0] as any).demoLink && (
+                            <a href={(projects[0] as any).demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[11px] font-mono text-foreground/60 hover:text-foreground transition-colors">
+                              <ExternalLink size={14} /> LIVE DEMO
+                            </a>
+                          )}
                         </div>
                     </div>
                 </div>
@@ -158,11 +163,18 @@ export const ArticlesSection = () => {
                               )}
                             </div>
                             
-                            {project.link && (
-                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                View Project <ArrowRight size={12} />
-                              </a>
-                            )}
+                            <div className="flex items-center gap-4">
+                              {project.link && (
+                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  View Project <ArrowRight size={12} />
+                                </a>
+                              )}
+                              {(project as any).demoLink && (
+                                <a href={(project as any).demoLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  Live Demo <ExternalLink size={12} />
+                                </a>
+                              )}
+                            </div>
                           </div>
                       </div>
                   </div>
