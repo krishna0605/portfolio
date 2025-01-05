@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, FileText } from "lucide-react";
 import { usePersona } from "./PersonaProvider";
 import { engineerProjects, creativeProjects } from "@/data/personaContent";
 import { motion, AnimatePresence } from "framer-motion";
@@ -97,15 +97,20 @@ export const ArticlesSection = () => {
                           ))}
                         </div>
 
-                        <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-4">
+                        <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-5 flex-wrap">
                           {projects[0].link && (
-                            <a href={projects[0].link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[11px] font-mono text-foreground/60 hover:text-foreground transition-colors">
-                              <Github size={14} /> VIEW CODE
+                            <a href={projects[0].link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
+                              <Github size={18} /> VIEW CODE
                             </a>
                           )}
                           {(projects[0] as any).demoLink && (
-                            <a href={(projects[0] as any).demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[11px] font-mono text-foreground/60 hover:text-foreground transition-colors">
-                              <ExternalLink size={14} /> LIVE DEMO
+                            <a href={(projects[0] as any).demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
+                              <ExternalLink size={18} /> LIVE DEMO
+                            </a>
+                          )}
+                          {(projects[0] as any).notionLink && (
+                            <a href={(projects[0] as any).notionLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
+                              <FileText size={18} /> DOCS
                             </a>
                           )}
                         </div>
@@ -163,15 +168,20 @@ export const ArticlesSection = () => {
                               )}
                             </div>
                             
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 flex-wrap">
                               {project.link && (
-                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                  View Project <ArrowRight size={12} />
+                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  View Project <ArrowRight size={14} />
                                 </a>
                               )}
                               {(project as any).demoLink && (
-                                <a href={(project as any).demoLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                  Live Demo <ExternalLink size={12} />
+                                <a href={(project as any).demoLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  Live Demo <ExternalLink size={14} />
+                                </a>
+                              )}
+                              {(project as any).notionLink && (
+                                <a href={(project as any).notionLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  Docs <FileText size={14} />
                                 </a>
                               )}
                             </div>

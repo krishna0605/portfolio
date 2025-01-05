@@ -35,6 +35,7 @@ export const engineerProjects = [
     techStack: ["Python", "LangChain", "OpenAI", "Streamlit", "Vector DB"],
     link: "https://github.com/krishna0605/medibot",
     demoLink: "https://healthdocliv.app/",
+    notionLink: "https://healthdocliv.notion.site/PROJECT_DOCUMENTATION-2f5c54ff4fff80618cf9e61f78690a71",
     image: "/projects/medibot.png",
   },
 ];
