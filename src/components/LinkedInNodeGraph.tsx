@@ -244,8 +244,9 @@ export const LinkedInNodeGraph = () => {
                   y2={to.y}
                   stroke={isHighlighted 
                     ? (isEngineer ? "rgba(59, 130, 246, 0.5)" : "rgba(168, 85, 247, 0.5)") 
-                    : "rgba(255, 255, 255, 0.1)"
+                    : "currentColor"
                   }
+                  strokeOpacity={isHighlighted ? 1 : 0.15}
                   strokeWidth={isHighlighted ? 1.5 : 0.5}
                   initial={{ pathLength: 0, opacity: 0 }}
                   whileInView={{ pathLength: 1, opacity: 1 }}
@@ -310,7 +311,7 @@ export const LinkedInNodeGraph = () => {
                 x={nodePositions[0].x}
                 y={nodePositions[0].y + 40}
                 textAnchor="middle"
-                className="fill-white/70 text-[11px] font-medium"
+                className="fill-foreground/70 text-[11px] font-medium"
               >
                 {isEngineer ? "Profile" : "Portfolio"}
               </text>
@@ -389,7 +390,7 @@ export const LinkedInNodeGraph = () => {
                     textAnchor={pos.x > 450 ? "start" : "end"}
                     className={clsx(
                       "text-[11px] font-medium transition-all duration-200",
-                      isHovered ? "fill-white" : "fill-white/60"
+                      isHovered ? "fill-foreground" : "fill-foreground/60"
                     )}
                   >
                     {node.title}
@@ -400,7 +401,7 @@ export const LinkedInNodeGraph = () => {
                     x={pos.x + (pos.x > 450 ? 22 : -22)}
                     y={pos.y + 18}
                     textAnchor={pos.x > 450 ? "start" : "end"}
-                    className="fill-white/40 text-[9px] font-mono"
+                    className="fill-foreground/40 text-[9px] font-mono"
                   >
                     {'date' in node ? node.date : ('subtitle' in node ? (node as typeof creativeNodes[0]).subtitle : '')}
                   </text>
