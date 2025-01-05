@@ -34,7 +34,7 @@ export const engineerProjects = [
     tag: "AI + Healthcare",
     techStack: ["Python", "LangChain", "OpenAI", "Streamlit", "Vector DB"],
     link: "https://github.com/krishna0605/medibot",
-    demoLink: "https://healthdoc-api-krishna0605s-projects.vercel.app/",
+    demoLink: "https://healthdocliv.app/",
     image: "/projects/medibot.png",
   },
 ];
