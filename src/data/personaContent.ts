@@ -2,11 +2,12 @@
 export const engineerProjects = [
   {
     id: "ai-codemate",
-    title: "AI CodeMate",
+    title: "AI CodeMate (WIP)",
     description: "Designed a user-friendly interface for repository management, enabling real-time website repository previews with interactive editing. Built an AI-powered assistant to provide code snippets, version history, and optimization suggestions via RAG.",
     tag: "AI Engineering",
     techStack: ["React.js", "Next.js", "TypeScript", "PostgreSQL", "TailwindCSS"],
     link: "https://github.com/krishna0605",
+    demoLink: "https://ai-codemate-nine.vercel.app/",
     image: "/projects/ai-codemate.png",
   },
   {
