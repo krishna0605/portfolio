@@ -22,6 +22,17 @@ export const engineerProjects = [
     image: "/projects/vulnscanner.png",
   },
   {
+    id: "threatforge",
+    title: "ThreatForge",
+    description: "Built an AI-powered threat detection platform for SOC teams to detect malware, steganography, and network anomalies using ML classifiers and YARA rules. Features real-time dashboards, MFA authentication, PDF report exports, live threat intel feeds, and full observability with Prometheus and Grafana.",
+    tag: "AI + Security",
+    techStack: ["Next.js", "Python", "Flask", "Supabase", "Scikit-learn", "Docker"],
+    link: "",
+    demoLink: "",
+    notionLink: "",
+    image: "/projects/threatforge.png",
+  },
+  {
     id: "gaia-agent",
     title: "GAIA Benchmark AI Agent",
     description: "Built an AI agent for GAIA benchmark evaluations using Python and Gradio. Integrated API handling, question answering, and result submission with robust error management and fallback mechanisms.",
