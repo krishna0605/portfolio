@@ -16,6 +16,8 @@ export const engineerProjects = [
     tag: "AI + Security",
     techStack: ["Python", "Flask", "Scikit-learn", "YARA", "Pandas"],
     link: "https://github.com/krishna0605/cybersecurity-threat-ai-main",
+    demoLink: "https://vulnscanner.tech/",
+    notionLink: "https://healthdocliv.notion.site/VulnScanner-Complete-Project-Documentation-300c54ff4fff80d8b62ae4bb49631173?source=copy_link",
     image: "/projects/threat-ai.png",
   },
   {
