@@ -126,15 +126,12 @@ export const ArticlesSection = () => {
                 ))}
               </div>
 
-              {/* Row 2 — 2 equal cards, centered */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {projects.slice(3).map((project, idx) => (
+              {/* Row 2 — 2 equal cards, wider */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                {projects.slice(3).map((project) => (
                   <div 
                     key={project.id} 
-                    className={`group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col ${
-                      idx === 0 ? "lg:col-start-1" : "lg:col-start-2"
-                    }`}
-                    style={idx === 0 ? { marginLeft: 'auto', marginRight: 0, width: '100%', gridColumn: undefined } : undefined}
+                    className="group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col"
                   >
                       {/* Header Image Pattern */}
                       <div className="h-[140px] w-full bg-[#151515] border-b border-white/10 relative overflow-hidden flex items-center justify-center transition-colors">
