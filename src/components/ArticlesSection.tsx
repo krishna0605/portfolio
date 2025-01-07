@@ -43,7 +43,7 @@ export const ArticlesSection = () => {
               </Link>
           </div>
 
-          {/* Projects Grid */}
+          {/* Projects Grid — Row 1: 3 cards, Row 2: 2 cards centered */}
           <AnimatePresence mode="wait">
             <motion.div 
               key={persona}
@@ -51,93 +51,28 @@ export const ArticlesSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8"
+              className="flex flex-col gap-6 lg:gap-8"
             >
-             
-             {/* FEATURED PROJECT (First one - Spans 6 cols) */}
-             <div className="lg:col-span-6 flex flex-col">
-                <div className="group h-full inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col">
-                    {/* Image Area */}
-                    <div className={`h-[240px] w-full bg-[#151515] border-b border-white/10 flex items-center justify-center overflow-hidden relative transition-colors`}>
-                        <div className="absolute inset-0 opacity-20" 
-                             style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '20px 20px' }}>
-                        </div>
-                        <div className={`font-mono text-4xl md:text-5xl font-bold tracking-widest transition-colors uppercase ${
-                          persona === "engineer" ? "text-blue-500/30" : "text-purple-500/30"
-                        }`}>
-                            {projects[0].tag}
-                        </div>
-                    </div>
-
-                    <div className="p-8 flex flex-col flex-1">
-                        <div className="mb-6 flex items-center justify-between">
-                             <span className={`px-3 py-1 border text-[10px] font-mono uppercase tracking-widest rounded-sm ${
-                               persona === "engineer" 
-                                 ? "border-blue-500/30 text-blue-400" 
-                                 : "border-purple-500/30 text-purple-400"
-                             }`}>
-                                {projects[0].tag}
-                             </span>
-                        </div>
-                        
-                        <h3 className="text-2xl md:text-3xl font-medium text-foreground mb-4 transition-colors">
-                            {projects[0].title}
-                        </h3>
-                        
-                        <p className="text-foreground/60 text-sm leading-relaxed mb-6 max-w-md">
-                            {projects[0].description}
-                        </p>
-
-                        {/* Tech Stack */}
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {projects[0].techStack.map(tech => (
-                            <span key={tech} className="px-2 py-1 bg-white/5 border border-white/10 text-xs font-mono text-foreground/70 rounded">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-5 flex-wrap">
-                          {projects[0].link && (
-                            <a href={projects[0].link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
-                              <Github size={18} /> VIEW CODE
-                            </a>
-                          )}
-                          {(projects[0] as any).demoLink && (
-                            <a href={(projects[0] as any).demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
-                              <ExternalLink size={18} /> LIVE DEMO
-                            </a>
-                          )}
-                          {(projects[0] as any).notionLink && (
-                            <a href={(projects[0] as any).notionLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-mono text-foreground/60 hover:text-foreground transition-colors">
-                              <FileText size={18} /> DOCS
-                            </a>
-                          )}
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-             {/* SECONDARY PROJECTS (Other two - Spans 6 cols, split into 2) */}
-             <div className="lg:col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                
-                {projects.slice(1).map((project, idx) => (
+              {/* Row 1 — 3 equal cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {projects.slice(0, 3).map((project) => (
                   <div 
                     key={project.id} 
-                    className={`group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col ${
-                      (idx === projects.slice(1).length - 1 && projects.slice(1).length % 2 !== 0) ? "md:col-span-2" : ""
-                    }`}
+                    className="group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col"
                   >
                       {/* Header Image Pattern */}
-                      <div className="h-[120px] w-full bg-[#151515] border-b border-white/10 relative overflow-hidden flex items-center justify-center transition-colors">
-                          <span className={`font-mono text-xl font-bold uppercase ${
-                            persona === "engineer" ? "text-blue-500/20" : "text-purple-500/20"
+                      <div className="h-[140px] w-full bg-[#151515] border-b border-white/10 relative overflow-hidden flex items-center justify-center transition-colors">
+                          <div className="absolute inset-0 opacity-10" 
+                               style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '20px 20px' }}>
+                          </div>
+                          <span className={`font-mono text-xl md:text-2xl font-bold uppercase tracking-widest ${
+                            persona === "engineer" ? "text-blue-500/25" : "text-purple-500/25"
                           }`}>
                             {project.tag}
                           </span>
                       </div>
                       
-                      <div className="p-6 flex flex-col h-full">
+                      <div className="p-6 flex flex-col flex-1">
                            <div className="mb-4 flex items-center justify-between">
                                <span className={`px-2 py-0.5 border text-[9px] font-mono uppercase tracking-widest rounded-sm ${
                                  persona === "engineer" 
@@ -147,7 +82,7 @@ export const ArticlesSection = () => {
                                   {project.tag}
                                </span>
                           </div>
-                          <h4 className="text-lg font-medium text-foreground mb-2 transition-colors">
+                          <h4 className="text-xl font-medium text-foreground mb-3 transition-colors">
                              {project.title}
                           </h4>
                           <p className="text-foreground/60 text-xs leading-relaxed mb-4">
@@ -155,33 +90,33 @@ export const ArticlesSection = () => {
                           </p>
                           
                           <div className="mt-auto">
-                            <div className="flex flex-wrap gap-1 mb-4">
-                              {project.techStack.slice(0, 3).map(tech => (
-                                <span key={tech} className="px-2 py-0.5 bg-white/5 text-[10px] font-mono text-foreground/50 rounded">
+                            <div className="flex flex-wrap gap-1.5 mb-4">
+                              {project.techStack.slice(0, 4).map(tech => (
+                                <span key={tech} className="px-2 py-0.5 bg-white/5 border border-white/10 text-[10px] font-mono text-foreground/60 rounded">
                                   {tech}
                                 </span>
                               ))}
-                              {project.techStack.length > 3 && (
+                              {project.techStack.length > 4 && (
                                 <span className="px-2 py-0.5 text-[10px] font-mono text-foreground/40">
-                                  +{project.techStack.length - 3}
+                                  +{project.techStack.length - 4}
                                 </span>
                               )}
                             </div>
                             
-                            <div className="flex items-center gap-4 flex-wrap">
+                            <div className="pt-4 border-t border-white/5 flex items-center gap-4 flex-wrap">
                               {project.link && (
                                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                  View Project <ArrowRight size={14} />
+                                  <Github size={14} /> View Code
                                 </a>
                               )}
                               {(project as any).demoLink && (
                                 <a href={(project as any).demoLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                  Live Demo <ExternalLink size={14} />
+                                  <ExternalLink size={14} /> Live Demo
                                 </a>
                               )}
                               {(project as any).notionLink && (
                                 <a href={(project as any).notionLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
-                                  Docs <FileText size={14} />
+                                  <FileText size={14} /> Docs
                                 </a>
                               )}
                             </div>
@@ -189,8 +124,83 @@ export const ArticlesSection = () => {
                       </div>
                   </div>
                 ))}
+              </div>
 
-             </div>
+              {/* Row 2 — 2 equal cards, centered */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {projects.slice(3).map((project, idx) => (
+                  <div 
+                    key={project.id} 
+                    className={`group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex flex-col ${
+                      idx === 0 ? "lg:col-start-1" : "lg:col-start-2"
+                    }`}
+                    style={idx === 0 ? { marginLeft: 'auto', marginRight: 0, width: '100%', gridColumn: undefined } : undefined}
+                  >
+                      {/* Header Image Pattern */}
+                      <div className="h-[140px] w-full bg-[#151515] border-b border-white/10 relative overflow-hidden flex items-center justify-center transition-colors">
+                          <div className="absolute inset-0 opacity-10" 
+                               style={{ backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, backgroundSize: '20px 20px' }}>
+                          </div>
+                          <span className={`font-mono text-xl md:text-2xl font-bold uppercase tracking-widest ${
+                            persona === "engineer" ? "text-blue-500/25" : "text-purple-500/25"
+                          }`}>
+                            {project.tag}
+                          </span>
+                      </div>
+                      
+                      <div className="p-6 flex flex-col flex-1">
+                           <div className="mb-4 flex items-center justify-between">
+                               <span className={`px-2 py-0.5 border text-[9px] font-mono uppercase tracking-widest rounded-sm ${
+                                 persona === "engineer" 
+                                   ? "border-blue-500/30 text-blue-400/80" 
+                                   : "border-purple-500/30 text-purple-400/80"
+                               }`}>
+                                  {project.tag}
+                               </span>
+                          </div>
+                          <h4 className="text-xl font-medium text-foreground mb-3 transition-colors">
+                             {project.title}
+                          </h4>
+                          <p className="text-foreground/60 text-xs leading-relaxed mb-4">
+                            {project.description}
+                          </p>
+                          
+                          <div className="mt-auto">
+                            <div className="flex flex-wrap gap-1.5 mb-4">
+                              {project.techStack.slice(0, 4).map(tech => (
+                                <span key={tech} className="px-2 py-0.5 bg-white/5 border border-white/10 text-[10px] font-mono text-foreground/60 rounded">
+                                  {tech}
+                                </span>
+                              ))}
+                              {project.techStack.length > 4 && (
+                                <span className="px-2 py-0.5 text-[10px] font-mono text-foreground/40">
+                                  +{project.techStack.length - 4}
+                                </span>
+                              )}
+                            </div>
+                            
+                            <div className="pt-4 border-t border-white/5 flex items-center gap-4 flex-wrap">
+                              {project.link && (
+                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  <Github size={14} /> View Code
+                                </a>
+                              )}
+                              {(project as any).demoLink && (
+                                <a href={(project as any).demoLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  <ExternalLink size={14} /> Live Demo
+                                </a>
+                              )}
+                              {(project as any).notionLink && (
+                                <a href={(project as any).notionLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-foreground/50 hover:text-foreground transition-colors uppercase tracking-wider">
+                                  <FileText size={14} /> Docs
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                ))}
+              </div>
 
           </motion.div>
           </AnimatePresence>
