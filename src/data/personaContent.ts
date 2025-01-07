@@ -27,9 +27,9 @@ export const engineerProjects = [
     description: "Built an AI-powered threat detection platform for SOC teams to detect malware, steganography, and network anomalies using ML classifiers and YARA rules. Features real-time dashboards, MFA authentication, PDF report exports, live threat intel feeds, and full observability with Prometheus and Grafana.",
     tag: "AI + Security",
     techStack: ["Next.js", "Python", "Flask", "Supabase", "Scikit-learn", "Docker"],
-    link: "",
-    demoLink: "",
-    notionLink: "",
+    link: "https://github.com/krishna0605/ThreatForge",
+    demoLink: "https://threat-forge.vercel.app/",
+    notionLink: "https://threatforge.notion.site/project_documentation-307c54ff4fff80f1aadbd83065554434?source=copy_link",
     image: "/projects/threatforge.png",
   },
   {
