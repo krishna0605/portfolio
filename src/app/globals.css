@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Enable class-based dark mode for next-themes in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-hover-bg: var(--hover-bg);
+  --color-hover-fg: var(--hover-fg);
+  
+  --color-grid-line: var(--grid-line);
+  --color-grid-line-strong: var(--grid-line-strong);
+  
+  --color-letta-primary: var(--letta-primary);
+  --color-letta-dark: var(--letta-dark);
+  --color-letta-light: var(--letta-light);
+  
+  --animate-grain: grain 8s steps(10) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* LIGHT MODE (Default) */
+  --background: #ffffff;
+  --foreground: #111111;
+  
+  /* INVERSE HOVER: In Light Mode, hover turns DARK */
+  --hover-bg: #1a1a1a;
+  --hover-fg: #ffffff;
+  
+  --grid-line: rgba(0, 0, 0, 0.1);
+  --grid-line-strong: rgba(0, 0, 0, 0.2);
+  
+  --letta-primary: #333333;
+  --letta-dark: #ffffff;  /* Inverted for logic */
+  --letta-light: #111111; /* Inverted for logic */
+}
+
+.dark {
+  /* DARK MODE (Override) */
+  --background: #1a1a1a;
+  --foreground: #ffffff;  /* Pure white for maximum visibility */
+  
+  /* INVERSE HOVER: In Dark Mode, hover turns PURE WHITE */
+  --hover-bg: #ffffff;
+  --hover-fg: #111111;
+  
+  --grid-line: rgba(201, 205, 209, 0.2);
+  --grid-line-strong: rgba(201, 205, 209, 0.4);
+  
+  --letta-primary: #DEE1E4;
+  --letta-dark: #1a1a1a;
+  --letta-light: #C9CDD1;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Inverse Hover Panel: Background inverts on hover using theme-aware CSS variables */
+.inverse-hover-panel {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure all text inside panel at rest inherits the panel's foreground color */
+.inverse-hover-panel * {
+  transition: color 0.3s ease;
+}
+
+.inverse-hover-panel:hover {
+  background-color: var(--hover-bg) !important;
+  color: var(--hover-fg) !important;
+}
+
+/* Force all text elements inside hovered panel to inherit the hover color */
+.inverse-hover-panel:hover * {
+  color: inherit !important;
+}
+
+/* Grain Animation (Global Overlay) */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.05; /* Increased from default for better visibility in Light Mode */
+  animation: grain 8s steps(10) infinite;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+
+/* 
+   Letta-style Animated Noise / Pixel Grain Effect 
+   GOAL: Fine-grain, procedural, ALMOST IMPERCEPTIBLE motion, low opacity (6-15%)
+*/
+.noise-overlay {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* Create new stacking context */
+}
+
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -10%; /* Small extend for subtle movement */
+  width: 120%;
+  height: 120%;
+  
+  /* 
+     Noise Texture: Very high-frequency (1.5) for pure fine-grain dither
+     Small tile size (64px) for film-grain-like texture
+  */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  
+  /* Low opacity: 6% base (barely visible), 12% on interaction */
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Animation: VERY SLOW (1.5s), TINY shifts (1-2px), steps for pixel fidelity */
+  animation: noiseShift 1.5s steps(4) infinite;
+  
+  transition: opacity 0.25s ease-out;
+}
+
+@keyframes noiseShift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-1px, 1px); }
+  50%  { transform: translate(1px, -1px); }
+  75%  { transform: translate(-1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Interaction: On hover/active, increase opacity slightly */
+.noise-overlay:hover::after,
+.noise-overlay[data-active="true"]::after {
+  opacity: 0.12;
+}
+
+/* Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Outlined Text Utility */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4); 
+  color: transparent;
+}
+.dark .text-outline-white, .text-outline-white {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: transparent;
+}
+:root:not(.dark) .text-outline-white {
+   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2); /* Dark outline in light mode for "White" text reversed */
 }
