@@ -177,6 +177,106 @@ body::before {
   scrollbar-width: none;
 }
 
+/* ========================================
+   CUSTOM SCROLLBAR - Modern Sleek Design
+   ======================================== */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(100, 100, 100, 0.4) 0%,
+    rgba(80, 80, 80, 0.6) 50%,
+    rgba(100, 100, 100, 0.4) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(120, 120, 255, 0.6) 0%,
+    rgba(100, 100, 230, 0.8) 50%,
+    rgba(120, 120, 255, 0.6) 100%
+  );
+  box-shadow: 0 0 12px rgba(100, 100, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    rgba(80, 80, 200, 0.8) 0%,
+    rgba(60, 60, 180, 1) 50%,
+    rgba(80, 80, 200, 0.8) 100%
+  );
+}
+
+/* Scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(200, 200, 200, 0.2) 0%,
+    rgba(180, 180, 180, 0.35) 50%,
+    rgba(200, 200, 200, 0.2) 100%
+  );
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(100, 150, 255, 0.5) 0%,
+    rgba(80, 130, 230, 0.7) 50%,
+    rgba(100, 150, 255, 0.5) 100%
+  );
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgba(200, 200, 200, 0.3) transparent;
+}
+
+/* Mobile-friendly touch scrollbar indicator */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.6);
+    border: none;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
 /* Outlined Text Utility */
 .text-outline {
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4); 
