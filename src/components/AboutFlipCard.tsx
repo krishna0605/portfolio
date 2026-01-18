@@ -103,7 +103,7 @@ export const AboutFlipCard = () => {
 
                     <div className="flex items-center gap-6 mb-10">
                         <a href="mailto:creativesimulation1@gmail.com" className="text-white/70 hover:text-white transition-colors"><Mail size={22} strokeWidth={1.5}/></a>
-                        <a href="https://github.com/krishnakapoor" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors"><Github size={22} strokeWidth={1.5}/></a>
+                        <a href="https://github.com/krishna0605" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors"><Github size={22} strokeWidth={1.5}/></a>
                         <a href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors"><Linkedin size={22} strokeWidth={1.5}/></a>
                     </div>
 
