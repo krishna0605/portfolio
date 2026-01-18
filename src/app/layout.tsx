@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { PersonaProvider } from "@/components/PersonaProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,6 +44,7 @@ export default function RootLayout({
             {children}
           </PersonaProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
