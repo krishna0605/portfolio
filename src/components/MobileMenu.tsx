@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Github, Linkedin, Mail, Download } from "lucide-react";
 import { clsx } from "clsx";
+import { PersonaToggle } from "./PersonaToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -86,22 +88,48 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                 ))}
               </div>
 
-              {/* Footer Actions */}
-              <div className="pt-6 mt-4 border-t border-grid-line space-y-3">
-                 <Link 
-                    href="https://app.letta.com"
-                    onClick={onClose}
-                    className="flex items-center justify-center w-full py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
+              {/* Footer Actions - Portfolio Specific */}
+              <div className="pt-6 mt-4 border-t border-grid-line space-y-4">
+                 
+                 {/* Toggles Row */}
+                 <div className="flex items-center justify-center gap-4">
+                    <PersonaToggle />
+                    <ThemeToggle />
+                 </div>
+
+                 {/* Social Links Row */}
+                 <div className="flex items-center justify-center gap-6">
+                    <Link 
+                       href="https://github.com/krishnakapoor" 
+                       target="_blank"
+                       className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
+                    >
+                       <Github size={22} />
+                    </Link>
+                    <Link 
+                       href="https://www.linkedin.com/in/krishna-kapoor-517546270/" 
+                       target="_blank"
+                       className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
+                    >
+                       <Linkedin size={22} />
+                    </Link>
+                    <Link 
+                       href="mailto:krishnakapoor@example.com"
+                       className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
+                    >
+                       <Mail size={22} />
+                    </Link>
+                 </div>
+
+                 {/* Resume Download CTA */}
+                 <a 
+                    href="/Krishna_Kapoor_Resume_2 .pdf" 
+                    download
+                    className="flex items-center justify-center gap-2 w-full py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
                  >
-                    Launch App
-                 </Link>
-                 <Link 
-                    href="https://docs.letta.com"
-                    onClick={onClose}
-                    className="flex items-center justify-center w-full py-3 border border-grid-line text-foreground font-medium rounded-md hover:bg-foreground/5 transition-colors"
-                 >
-                    Documentation
-                 </Link>
+                    <Download size={18} />
+                    Download Resume
+                 </a>
               </div>
             </div>
           </motion.div>
