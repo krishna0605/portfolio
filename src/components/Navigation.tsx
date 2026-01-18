@@ -22,7 +22,7 @@ const menuItems = {
   ],
   About: [
     { title: "Background", desc: "Education & experience", href: "#about", icon: <Book /> },
-    { title: "Resume", desc: "Download my CV", href: "/resume.pdf", icon: <Code /> },
+    { title: "Resume", desc: "Download my CV", href: "/Krishna_Kapoor_Resume_2 .pdf", icon: <Code /> },
     { title: "Contact", desc: "Get in touch", href: "#contact", icon: <Terminal /> },
   ]
 };
