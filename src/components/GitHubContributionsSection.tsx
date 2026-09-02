@@ -273,7 +273,7 @@ export const GitHubContributionsSection = () => {
   const { persona } = usePersona();
   const shouldReduceMotion = useReducedMotion();
   const cache = useRef(new Map<number, ContributionResponse>());
-  const controller = useRef<AbortController | null>(null);
+  const requestVersion = useRef(0);
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [availableYears, setAvailableYears] = useState([currentYear]);
   const [data, setData] = useState<ContributionResponse | null>(null);
@@ -281,7 +281,7 @@ export const GitHubContributionsSection = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const loadYear = useCallback(async (year: number, force = false) => {
-    controller.current?.abort();
+    const version = ++requestVersion.current;
     setSelectedYear(year);
     setErrorMessage("");
 
@@ -293,14 +293,11 @@ export const GitHubContributionsSection = () => {
       return;
     }
 
-    const nextController = new AbortController();
-    controller.current = nextController;
     setStatus("loading");
 
     try {
       const response = await fetch(`/api/github-contributions?year=${year}`, {
         headers: { Accept: "application/json" },
-        signal: nextController.signal,
       });
       const payload = (await response.json()) as ContributionResponse | ContributionErrorResponse;
 
@@ -308,12 +305,13 @@ export const GitHubContributionsSection = () => {
         throw new Error("error" in payload ? payload.error.message : "GitHub activity is temporarily unavailable.");
       }
 
+      if (version !== requestVersion.current) return;
       cache.current.set(year, payload);
       setData(payload);
       setAvailableYears(payload.availableYears);
       setStatus("success");
     } catch (error) {
-      if (error instanceof DOMException && error.name === "AbortError") return;
+      if (version !== requestVersion.current) return;
       setErrorMessage(error instanceof Error ? error.message : "GitHub activity is temporarily unavailable.");
       setStatus("error");
     }
@@ -327,11 +325,9 @@ export const GitHubContributionsSection = () => {
 
   useEffect(() => {
     if (persona !== "engineer") {
-      controller.current?.abort();
+      requestVersion.current += 1;
     }
   }, [persona]);
-
-  useEffect(() => () => controller.current?.abort(), []);
 
   const totalLabel = data
     ? data.rangeLabel === "last-year"
