@@ -25,6 +25,7 @@ const navigationItems = {
   About: [
     { title: "Background", desc: "Education & experience", href: "#about", icon: <Book /> },
     { title: "Experience", desc: "Cloud Computing & DevOps internship", href: "#experience", icon: <Briefcase /> },
+    { title: "GitHub Activity", desc: "Year-by-year contribution history", href: "#contributions", icon: <Github /> },
     { title: "Resume", desc: "Download my CV", href: siteAssets.resumeHref, icon: <Code /> },
     { title: "Contact", desc: "Get in touch", href: "#contact", icon: <Terminal /> },
   ]
@@ -80,7 +81,9 @@ export const Navigation = () => {
   const { persona, setPersona } = usePersona();
   const menuItems = {
     ...navigationItems,
-    About: navigationItems.About.filter((item) => item.title !== "Experience" || persona === "engineer"),
+    About: navigationItems.About.filter(
+      (item) => !["Experience", "GitHub Activity"].includes(item.title) || persona === "engineer",
+    ),
   };
 
   // Handler to switch persona when clicking on project items

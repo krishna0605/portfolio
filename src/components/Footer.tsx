@@ -18,6 +18,7 @@ const footerLinks: Array<{ title: string; links: FooterLink[] }> = [
     links: [
       { label: "Projects", href: "#projects" },
       { label: "Experience", href: "#experience", engineerOnly: true },
+      { label: "GitHub Activity", href: "#contributions", engineerOnly: true },
       { label: "Skills", href: "#skills" },
       { label: "Resume", href: siteAssets.resumeHref },
     ],

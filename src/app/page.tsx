@@ -10,6 +10,7 @@ import { CreativeGallery } from "@/components/CreativeGallery";
 import { FooterMarquee } from "@/components/FooterMarquee";
 import { Footer } from "@/components/Footer";
 import { WorkExperienceSection } from "@/components/WorkExperienceSection";
+import { GitHubContributionsSection } from "@/components/GitHubContributionsSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <LinkedInNodeGraph />
         <AboutFlipCard />
         <WorkExperienceSection />
+        <GitHubContributionsSection />
         <ArticlesSection />
         <CreativeGallery />
         <FooterMarquee />
