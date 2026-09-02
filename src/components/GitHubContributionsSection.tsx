@@ -323,9 +323,15 @@ export const GitHubContributionsSection = () => {
     if (persona === "engineer" && !data && status === "loading") {
       void loadYear(currentYear);
     }
-
-    return () => controller.current?.abort();
   }, [data, loadYear, persona, status]);
+
+  useEffect(() => {
+    if (persona !== "engineer") {
+      controller.current?.abort();
+    }
+  }, [persona]);
+
+  useEffect(() => () => controller.current?.abort(), []);
 
   const totalLabel = data
     ? data.rangeLabel === "last-year"
