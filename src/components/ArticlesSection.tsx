@@ -15,13 +15,7 @@ const ProjectCard = ({ project, persona }: ProjectCardProps) => {
   const isEngineer = persona === "engineer";
 
   return (
-    <article
-      className={`group relative flex h-full flex-col overflow-hidden border bg-background transition-colors duration-200 ${
-        isEngineer
-          ? "border-grid-line hover:border-blue-500/40 focus-within:border-blue-500/40"
-          : "border-grid-line hover:border-purple-500/40 focus-within:border-purple-500/40"
-      }`}
-    >
+    <article className="group inverse-hover-panel relative flex h-full flex-col overflow-hidden border border-black/20 transition-all duration-300 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20">
       <div className="relative flex h-[140px] w-full items-center justify-center overflow-hidden border-b border-white/10 bg-[#151515] transition-colors">
         <div
           className="absolute inset-0 opacity-15"
@@ -34,8 +28,8 @@ const ProjectCard = ({ project, persona }: ProjectCardProps) => {
         <span
           className={`relative px-5 text-center font-mono text-xl font-bold uppercase tracking-widest transition-colors duration-200 md:text-2xl ${
             isEngineer
-              ? "text-blue-500 dark:text-blue-400 group-hover:text-white group-focus-within:text-white"
-              : "text-purple-500 dark:text-purple-400 group-hover:text-white group-focus-within:text-white"
+              ? "text-blue-500 group-hover:!text-white group-focus-within:!text-white dark:text-blue-400"
+              : "text-purple-500 group-hover:!text-white group-focus-within:!text-white dark:text-purple-400"
           }`}
         >
           {project.tag}
