@@ -60,13 +60,13 @@ export const Footer = () => {
               }
             </p>
             <div className="flex items-center gap-4">
-              <Link href="mailto:creativesimulation1@gmail.com" className="text-foreground/60 hover:text-foreground transition-colors">
+              <Link href="mailto:creativesimulation1@gmail.com" aria-label="Email Krishna Kapoor" className="text-foreground/60 hover:text-foreground transition-colors">
                 <Mail size={20} />
               </Link>
-              <Link href="https://github.com/krishna0605" target="_blank" className="text-foreground/60 hover:text-foreground transition-colors">
+              <Link href="https://github.com/krishna0605" target="_blank" rel="noreferrer" aria-label="Krishna Kapoor on GitHub" className="text-foreground/60 hover:text-foreground transition-colors">
                 <Github size={20} />
               </Link>
-              <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" className="text-foreground/60 hover:text-foreground transition-colors">
+              <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" rel="noreferrer" aria-label="Krishna Kapoor on LinkedIn" className="text-foreground/60 hover:text-foreground transition-colors">
                 <Linkedin size={20} />
               </Link>
             </div>

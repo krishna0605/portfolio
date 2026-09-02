@@ -40,8 +40,9 @@ const navigationItems = {
                animate={{ opacity: 1, y: 0 }}
                exit={{ opacity: 0, y: 0 }}
                transition={{ duration: 0.1 }}
-                className="absolute top-full left-0 w-full bg-neutral-100 dark:bg-background border-b border-grid-line overflow-hidden z-40 noise-overlay"
+               className="absolute top-full left-0 w-full bg-neutral-100 dark:bg-background border-b border-grid-line overflow-hidden z-40 noise-overlay"
                data-active="true"
+               id="desktop-navigation-menu"
             >
                <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 border-x border-grid-line/50 relative z-10">
                   {items.map((item, idx) => (
@@ -112,20 +113,34 @@ export const Navigation = () => {
                onMouseEnter={() => setActiveItem(item)}
                data-active={activeItem === item}
             >
-               <div className="h-full px-8 flex items-center justify-center cursor-pointer relative z-10">
+               <button
+                 type="button"
+                 aria-expanded={activeItem === item}
+                 aria-controls="desktop-navigation-menu"
+                 onFocus={() => setActiveItem(item)}
+                 onClick={() => setActiveItem(activeItem === item ? null : item)}
+                 onKeyDown={(event) => {
+                   if (event.key === "Escape") setActiveItem(null);
+                 }}
+                 className="h-full px-8 flex items-center justify-center cursor-pointer relative z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+               >
                   <span className={clsx(
                       "text-sm font-medium transition-colors select-none",
                       (activeItem === item) ? "font-bold" : "group-hover:font-bold"
                     )}>
                     {item}
                   </span>
-               </div>
+               </button>
             </div>
           ))}
         </div>
 
         {/* Mobile Hamburger */}
         <button 
+           type="button"
+           aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+           aria-expanded={isMobileMenuOpen}
+           aria-controls="mobile-navigation-menu"
            className="md:hidden p-2 text-foreground/70 hover:text-foreground transition-colors z-[60]"
            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -136,10 +151,10 @@ export const Navigation = () => {
         <div className="hidden md:flex items-center gap-3 z-50">
           <PersonaToggle />
           <ThemeToggle />
-          <Link href="https://github.com/krishna0605" target="_blank" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
+          <Link href="https://github.com/krishna0605" target="_blank" rel="noreferrer" aria-label="Krishna Kapoor on GitHub" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
             <Github size={20} />
           </Link>
-          <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
+          <Link href="https://www.linkedin.com/in/krishna-kapoor-517546270/" target="_blank" rel="noreferrer" aria-label="Krishna Kapoor on LinkedIn" className="p-2 hover:bg-white/5 rounded-md transition-colors text-foreground hover:text-white">
             <Linkedin size={20} />
           </Link>
           <div className="group relative rounded-sm p-[1px] transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">

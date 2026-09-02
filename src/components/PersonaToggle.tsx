@@ -11,6 +11,8 @@ export const PersonaToggle = () => {
   return (
     <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-sm p-1">
       <button
+        type="button"
+        aria-pressed={persona === "engineer"}
         onClick={() => setPersona("engineer")}
         className={`
           relative px-3 py-1.5 text-xs font-medium rounded-sm transition-all duration-300
@@ -34,6 +36,8 @@ export const PersonaToggle = () => {
       </button>
       
       <button
+        type="button"
+        aria-pressed={persona === "creative"}
         onClick={() => setPersona("creative")}
         className={`
           relative px-3 py-1.5 text-xs font-medium rounded-sm transition-all duration-300

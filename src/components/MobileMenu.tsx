@@ -47,6 +47,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
 
           {/* Full Width Dropdown Panel */}
           <motion.div
+            id="mobile-navigation-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -60,6 +61,9 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                 {(Object.keys(menuItems) as Array<keyof typeof menuItems>).map((section) => (
                   <div key={section} className="border-b border-grid-line pb-4 last:border-0">
                     <button
+                      type="button"
+                      aria-expanded={expandedSection === section}
+                      aria-controls={`mobile-navigation-${section.toLowerCase()}`}
                       onClick={() => toggleSection(section)}
                       className="flex items-center justify-between w-full text-left font-medium text-foreground text-lg mb-2"
                     >
@@ -70,6 +74,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                     <AnimatePresence>
                       {expandedSection === section && (
                         <motion.div
+                          id={`mobile-navigation-${section.toLowerCase()}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -80,6 +85,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                               <Link 
                                 key={item.title}
                                 href={item.href}
+                                download={item.href.endsWith(".pdf") ? true : undefined}
                                 onClick={() => handleItemClick(item)}
                                 className="block group"
                               >
@@ -113,6 +119,8 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                     <Link 
                        href="https://github.com/krishna0605" 
                        target="_blank"
+                       rel="noreferrer"
+                       aria-label="Krishna Kapoor on GitHub"
                        className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
                     >
                        <Github size={22} />
@@ -120,6 +128,8 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                     <Link 
                        href="https://www.linkedin.com/in/krishna-kapoor-517546270/" 
                        target="_blank"
+                       rel="noreferrer"
+                       aria-label="Krishna Kapoor on LinkedIn"
                        className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
                     >
                        <Linkedin size={22} />
