@@ -33,18 +33,8 @@ export const WorkExperienceSection = () => {
               </p>
             </div>
 
-            <article className="relative overflow-hidden border border-grid-line bg-foreground/[0.02]">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 opacity-[0.055]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)",
-                  backgroundSize: "28px 28px",
-                }}
-              />
-
-              <div className="relative grid gap-10 p-7 md:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:p-14">
+            <article className="border border-grid-line bg-transparent">
+              <div className="grid gap-10 p-7 md:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:p-14">
                 <div>
                   <div className="mb-7 flex h-12 w-12 items-center justify-center border border-blue-500/25 bg-blue-500/10 text-blue-500 dark:text-blue-400">
                     <Briefcase size={22} />
