@@ -9,26 +9,20 @@ import { usePersona } from "./PersonaProvider";
 interface ProjectCardProps {
   project: Project;
   persona: "engineer" | "creative";
-  variant?: "featured" | "standard";
 }
 
-const ProjectCard = ({ project, persona, variant = "standard" }: ProjectCardProps) => {
-  const isFeatured = variant === "featured";
+const ProjectCard = ({ project, persona }: ProjectCardProps) => {
   const isEngineer = persona === "engineer";
 
   return (
     <article className="group inverse-hover-panel border border-black/20 hover:border-white/20 dark:border-white/10 dark:hover:border-black/20 relative overflow-hidden transition-all duration-300 flex h-full flex-col">
-      <div
-        className={`w-full bg-[#151515] border-b border-white/10 relative overflow-hidden flex items-center justify-center transition-colors ${
-          isFeatured ? "h-[180px] md:h-[210px]" : "h-[140px]"
-        }`}
-      >
+      <div className="relative flex h-[140px] w-full items-center justify-center overflow-hidden border-b border-white/10 bg-[#151515] transition-colors">
         <div
           className="absolute inset-0 opacity-15"
           style={{
             backgroundImage:
               "linear-gradient(#3f3f46 1px, transparent 1px), linear-gradient(90deg, #3f3f46 1px, transparent 1px)",
-            backgroundSize: isFeatured ? "28px 28px" : "20px 20px",
+            backgroundSize: "20px 20px",
           }}
         />
         <div
@@ -39,20 +33,15 @@ const ProjectCard = ({ project, persona, variant = "standard" }: ProjectCardProp
           }`}
         />
         <span
-          className={`relative font-mono font-bold uppercase tracking-widest text-center px-5 ${
-            isFeatured ? "text-2xl md:text-4xl" : "text-xl md:text-2xl"
-          } ${isEngineer ? "text-blue-400/30" : "text-purple-400/30"}`}
+          className={`relative px-5 text-center font-mono text-xl font-bold uppercase tracking-widest md:text-2xl ${
+            isEngineer ? "text-blue-400/30" : "text-purple-400/30"
+          }`}
         >
           {project.tag}
         </span>
-        {isFeatured && (
-          <span className="absolute left-5 top-5 rounded-sm border border-white/15 bg-black/25 px-2 py-1 text-[9px] font-mono uppercase tracking-[0.2em] text-white/65 backdrop-blur-sm">
-            Featured project
-          </span>
-        )}
       </div>
 
-      <div className={`flex flex-1 flex-col ${isFeatured ? "p-7 md:p-9" : "p-6"}`}>
+      <div className="flex flex-1 flex-col p-6">
         <span
           className={`mb-4 w-fit rounded-sm border px-2 py-0.5 text-[9px] font-mono uppercase tracking-widest ${
             isEngineer
@@ -63,16 +52,16 @@ const ProjectCard = ({ project, persona, variant = "standard" }: ProjectCardProp
           {project.tag}
         </span>
 
-        <h3 className={`font-medium text-foreground transition-colors ${isFeatured ? "text-2xl md:text-3xl" : "text-xl"}`}>
+        <h3 className="text-xl font-medium text-foreground transition-colors">
           {project.title}
         </h3>
-        <p className={`mt-3 text-foreground/65 leading-relaxed ${isFeatured ? "text-sm md:text-[15px]" : "text-xs"}`}>
+        <p className="mt-3 text-xs leading-relaxed text-foreground/65">
           {project.description}
         </p>
 
         <div className="mt-auto pt-6">
           <div className="mb-5 flex flex-wrap gap-1.5">
-            {project.techStack.slice(0, isFeatured ? 5 : 4).map((technology) => (
+            {project.techStack.slice(0, 4).map((technology) => (
               <span
                 key={technology}
                 className="rounded border border-current/10 bg-current/[0.025] px-2 py-1 text-[10px] font-mono text-foreground/65"
@@ -80,9 +69,9 @@ const ProjectCard = ({ project, persona, variant = "standard" }: ProjectCardProp
                 {technology}
               </span>
             ))}
-            {project.techStack.length > (isFeatured ? 5 : 4) && (
+            {project.techStack.length > 4 && (
               <span className="px-2 py-1 text-[10px] font-mono text-foreground/45">
-                +{project.techStack.length - (isFeatured ? 5 : 4)}
+                +{project.techStack.length - 4}
               </span>
             )}
           </div>
@@ -142,8 +131,6 @@ const ProjectCard = ({ project, persona, variant = "standard" }: ProjectCardProp
 export const ArticlesSection = () => {
   const { persona } = usePersona();
   const projects = persona === "engineer" ? engineerProjects : creativeProjects;
-  const featuredProjects = projects.filter((project) => project.featured);
-  const standardProjects = projects.filter((project) => !project.featured);
   const sectionTitle = persona === "engineer" ? "Engineering Projects" : "Creative Portfolio";
   const sectionSubtitle = persona === "engineer" ? "AI, Cloud, Security & Full-Stack" : "3D, Design & Simulation";
 
@@ -185,21 +172,27 @@ export const ArticlesSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3 }}
-            className="space-y-6 lg:space-y-8"
+            className={
+              persona === "engineer"
+                ? "grid grid-cols-12 gap-6 lg:gap-8"
+                : "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+            }
           >
-            {featuredProjects.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {featuredProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} persona={persona} variant="featured" />
-                ))}
-              </div>
-            )}
+            {projects.map((project, index) => {
+              const engineerCardClass = [0, 1, 5, 6].includes(index)
+                ? "col-span-12 md:col-span-6 lg:col-span-6"
+                : "col-span-12 md:col-span-6 lg:col-span-4";
+              const centeredTabletCardClass = index === 6 ? "md:col-start-4 lg:col-start-auto" : "";
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {standardProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} persona={persona} />
-              ))}
-            </div>
+              return (
+                <div
+                  key={project.id}
+                  className={persona === "engineer" ? `${engineerCardClass} ${centeredTabletCardClass}` : undefined}
+                >
+                  <ProjectCard project={project} persona={persona} />
+                </div>
+              );
+            })}
           </motion.div>
         </AnimatePresence>
       </div>
