@@ -356,9 +356,6 @@ export const GitHubContributionsSection = () => {
                 <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-blue-500 dark:text-blue-400">
                   {"// GITHUB_ACTIVITY"}
                 </p>
-                <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                  Consistency, visualized.
-                </h2>
                 <p className="mt-3 max-w-2xl text-foreground/60">
                   A year-by-year view of the public work behind the projects.
                 </p>
