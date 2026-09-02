@@ -72,7 +72,7 @@ export const DigitalHumansSection = () => {
                 
                  {/* // OPEN_LAB Header */}
                  <div className="font-mono text-[11px] tracking-widest text-blue-500 mb-6 uppercase">
-                    // OPEN_LAB
+                    {"// OPEN_LAB"}
                  </div>
 
                  <h3 className="text-xl md:text-2xl font-medium text-foreground leading-relaxed mb-10">

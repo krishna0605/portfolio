@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
@@ -17,13 +17,13 @@ export const ScrambleText = ({ text, className, hoverTrigger = true, trigger }: 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const isHovering = useRef(false);
 
-  const startScramble = () => {
+  const startScramble = useCallback(() => {
     let iteration = 0;
     
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      setDisplayText(prev => 
+      setDisplayText(() =>
         text
           .split("")
           .map((char, index) => {
@@ -41,13 +41,17 @@ export const ScrambleText = ({ text, className, hoverTrigger = true, trigger }: 
 
       iteration += 1 / 2; // Speed: 2 frames per character resolve
     }, 30);
-  };
+  }, [text]);
 
   useEffect(() => {
       if (trigger) {
           startScramble();
       }
-  }, [trigger]);
+  }, [trigger, startScramble]);
+
+  useEffect(() => () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  }, []);
 
   const handleMouseEnter = () => {
     if (hoverTrigger) {

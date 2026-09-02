@@ -57,7 +57,7 @@ export const MemorySection = () => {
          {/* Text Content - Positioned to look like part of the diagram flow */}
          <div className="max-w-3xl text-center relative z-20">
             <p className="text-[21px] md:text-[24px] leading-relaxed font-medium text-foreground tracking-tight">
-               Today's AI agents struggle to remember previous mistakes, and are unable to <br className="hidden md:block"/> learn from new experiences. At Letta, we're building machines with <br className="hidden md:block"/> real memory that can continually learn and self-improve.
+               Today&apos;s AI agents struggle to remember previous mistakes, and are unable to <br className="hidden md:block"/> learn from new experiences. At Letta, we&apos;re building machines with <br className="hidden md:block"/> real memory that can continually learn and self-improve.
             </p>
          </div>
 

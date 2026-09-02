@@ -29,7 +29,7 @@ export const ProblemSolutionSection = () => {
         {/* Right: Text and Buttons */}
         <div className="p-8 md:p-16 flex flex-col justify-center">
            <div className="mb-4 text-xs font-mono text-blue-400 tracking-widest uppercase">
-              // OPEN_LAB
+              {"// OPEN_LAB"}
            </div>
            
            <h3 className="text-3xl md:text-5xl font-medium leading-tight mb-12">

@@ -82,7 +82,7 @@ export const CreativeGallery = () => {
               viewport={{ once: true }}
               className="font-mono text-[11px] tracking-widest text-foreground/50 mb-3 uppercase"
             >
-              // CREATIVE_SHOWCASE
+              {"// CREATIVE_SHOWCASE"}
             </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}

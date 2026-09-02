@@ -131,7 +131,7 @@ export const Hero = () => {
       
       {/* Decorative Technical Labels */}
       <div className="absolute top-32 left-8 text-[10px] font-mono text-black/20 dark:text-white/20 hidden md:block rotate-90 origin-left">
-        // {persona === "engineer" ? "SYSTEM_INIT v2.0" : "CREATIVE_MODE v2.0"}
+        {"// "}{persona === "engineer" ? "SYSTEM_INIT v2.0" : "CREATIVE_MODE v2.0"}
       </div>
       <div className="absolute bottom-12 right-12 text-[10px] font-mono text-black/20 dark:text-white/20 hidden md:block">
         PERSONA: {persona.toUpperCase()}

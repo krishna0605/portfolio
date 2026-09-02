@@ -23,7 +23,7 @@ export const WorkExperienceSection = () => {
           <div className="mx-auto max-w-[1280px] px-4 md:px-6">
             <div className="mb-12">
               <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-blue-500 dark:text-blue-400">
-                // PROFESSIONAL_EXPERIENCE
+                {"// PROFESSIONAL_EXPERIENCE"}
               </p>
               <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
                 Experience beyond the build
