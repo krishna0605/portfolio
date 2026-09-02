@@ -1,112 +1,181 @@
-// Engineer Mode Projects - AI, Security, Full-Stack
-export const engineerProjects = [
+export const siteAssets = {
+  resumeHref: "/Krishna-Kapoor-CV.pdf",
+  internshipCertificateHref: "/Maincrafts-Internship-Certificate.pdf",
+} as const;
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tag: string;
+  techStack: string[];
+  featured?: boolean;
+  githubUrl?: string;
+  projectUrl?: string;
+  projectLabel?: string;
+  demoUrl?: string;
+  docsUrl?: string;
+}
+
+export interface WorkExperience {
+  company: string;
+  role: string;
+  period: string;
+  status: string;
+  summary: string;
+  achievements: string[];
+  technologies: string[];
+  credentialUrl?: string;
+}
+
+export const engineerProjects: Project[] = [
+  {
+    id: "netra",
+    title: "NETRA",
+    description:
+      "A case-oriented network forensics platform that turns authorized PCAP and PCAPNG captures into preserved evidence, explainable security signals, custody history, and investigator-ready reports.",
+    tag: "Network Forensics",
+    techStack: ["Python", "Django", "React", "TypeScript", "PostgreSQL"],
+    githubUrl: "https://github.com/krishna0605/Netra",
+    demoUrl: "https://netra-hackathon-console-20260714.vercel.app/",
+    featured: true,
+  },
+  {
+    id: "nextstop-ai",
+    title: "NextStop.ai",
+    description:
+      "A final-year AI meeting intelligence system that transforms recordings and transcripts into summaries, decisions, action items, and reviewable outputs through secure background workflows and observable services.",
+    tag: "AI + Systems",
+    techStack: ["Next.js", "Fastify", "TypeScript", "Redis", "Supabase"],
+    githubUrl: "https://github.com/krishna0605/NextStop.AI-Web",
+    demoUrl: "https://next-stop-ai-web.vercel.app/",
+    featured: true,
+  },
   {
     id: "ai-codemate",
     title: "AI CodeMate (WIP)",
-    description: "Designed a user-friendly interface for repository management, enabling real-time website repository previews with interactive editing. Built an AI-powered assistant to provide code snippets, version history, and optimization suggestions via RAG.",
+    description:
+      "Designed a user-friendly interface for repository management, enabling real-time website repository previews with interactive editing. Built an AI-powered assistant to provide code snippets, version history, and optimization suggestions via RAG.",
     tag: "AI Engineering",
     techStack: ["React.js", "Next.js", "TypeScript", "PostgreSQL", "TailwindCSS"],
-    link: "https://github.com/krishna0605",
-    demoLink: "https://ai-codemate-nine.vercel.app/",
-    image: "/projects/ai-codemate.png",
+    githubUrl: "https://github.com/krishna0605",
+    demoUrl: "https://ai-codemate-nine.vercel.app/",
   },
   {
     id: "vulnscanner",
     title: "VulnScanner",
-    description: "Built an enterprise-grade AI-powered URL threat intelligence & vulnerability analysis platform. Features deep web crawling with Playwright, real-time scan progress via WebSockets, MFA authentication, scheduled scans, and an executive security dashboard with actionable remediation guidance.",
+    description:
+      "Built an enterprise-grade AI-powered URL threat intelligence and vulnerability analysis platform with deep crawling, live scan progress, MFA, scheduled scans, and actionable remediation guidance.",
     tag: "AI + Cybersecurity",
     techStack: ["Next.js", "Fastify", "TypeScript", "Supabase", "Playwright"],
-    link: "https://github.com/krishna0605/vulnscanner",
-    demoLink: "https://vulnscanner.tech/",
-    notionLink: "https://healthdocliv.notion.site/VulnScanner-Complete-Project-Documentation-300c54ff4fff80d8b62ae4bb49631173?source=copy_link",
-    image: "/projects/vulnscanner.png",
+    githubUrl: "https://github.com/krishna0605/vulnscanner",
+    demoUrl: "https://vulnscanner.tech/",
+    docsUrl: "https://vulnscanner.notion.site/",
   },
   {
     id: "threatforge",
     title: "ThreatForge",
-    description: "Built an AI-powered threat detection platform for SOC teams to detect malware, steganography, and network anomalies using ML classifiers and YARA rules. Features real-time dashboards, MFA authentication, PDF report exports, live threat intel feeds, and full observability with Prometheus and Grafana.",
+    description:
+      "Built an AI-powered threat detection platform for SOC teams to identify malware, steganography, and network anomalies with ML classifiers, YARA rules, reporting, and full observability.",
     tag: "AI + Security",
     techStack: ["Next.js", "Python", "Flask", "Supabase", "Scikit-learn", "Docker"],
-    link: "https://github.com/krishna0605/ThreatForge",
-    demoLink: "https://threat-forge.vercel.app/",
-    notionLink: "https://threatforge.notion.site/project_documentation-307c54ff4fff80f1aadbd83065554434?source=copy_link",
-    image: "/projects/threatforge.png",
+    githubUrl: "https://github.com/krishna0605/ThreatForge",
+    demoUrl: "https://threat-forge.vercel.app/",
+    docsUrl:
+      "https://threatforge.notion.site/project_documentation-307c54ff4fff80f1aadbd83065554434?source=copy_link",
   },
   {
     id: "gaia-agent",
     title: "GAIA Benchmark AI Agent",
-    description: "Built an AI agent for GAIA benchmark evaluations using Python and Gradio. Integrated API handling, question answering, and result submission with robust error management and fallback mechanisms.",
+    description:
+      "Built an AI agent for GAIA benchmark evaluations using Python and Gradio, with API handling, question answering, result submission, robust error management, and fallback mechanisms.",
     tag: "AI Agent",
     techStack: ["Python", "Gradio", "Hugging Face API", "Groq API"],
-    link: "https://huggingface.co/spaces/krishna-cc/final_project",
-    image: "/projects/gaia-agent.png",
+    projectUrl: "https://huggingface.co/spaces/krishna-cc/final_project",
+    projectLabel: "Open Space",
   },
   {
     id: "health-doc",
     title: "HealthDoc Query Assistant",
-    description: "AI-powered medical document analysis tool capable of retrieving, summarizing, and answering queries from health records using RAG and LLMs. Optimized for accuracy in medical data processing.",
+    description:
+      "An AI-powered medical document analysis tool for retrieving, summarizing, and answering questions from health records using RAG and language models.",
     tag: "AI + Healthcare",
     techStack: ["Python", "LangChain", "OpenAI", "Streamlit", "Vector DB"],
-    link: "https://github.com/krishna0605/medibot",
-    demoLink: "https://healthdocliv.app/",
-    notionLink: "https://healthdocliv.notion.site/PROJECT_DOCUMENTATION-2f5c54ff4fff80618cf9e61f78690a71",
-    image: "/projects/medibot.png",
+    githubUrl: "https://github.com/krishna0605/medibot",
+    demoUrl: "https://healthdocliv.app/",
+    docsUrl:
+      "https://healthdocliv.notion.site/PROJECT_DOCUMENTATION-2f5c54ff4fff80618cf9e61f78690a71",
   },
 ];
 
-// Creative Mode Projects - 3D, ETS2, Design
-export const creativeProjects = [
+export const creativeProjects: Project[] = [
   {
     id: "ets2-trucks",
     title: "TATA Trucks Collection",
-    description: "High-fidelity ETS2 truck mods featuring the TATA SIGNA 5530.S BSVI-4X2 and TATA PRIMA 5530.S BSVI 4X2. Built with accurate 3D modeling, custom textures, realistic materials, and optimized performance for immersive Indian trucking simulation.",
+    description:
+      "High-fidelity ETS2 truck mods featuring the TATA SIGNA 5530.S BSVI-4X2 and TATA PRIMA 5530.S BSVI 4X2, built with accurate modeling, custom textures, and optimized materials.",
     tag: "ETS2 Modding",
     techStack: ["Blender", "3ds Max", "Photoshop", "ETS2 SDK", "PBR Texturing"],
-    link: "https://shopibs.in",
-    image: "/projects/tata-trucks.png",
+    projectUrl: "https://shopibs.in",
   },
   {
     id: "ibs-gaming",
     title: "IBS Gaming Collaboration",
-    description: "Collaborated with IBS Gaming (shopibs.in) to create and publish professional ETS2 mods for the Indian gaming community. Contributed to mod development, quality assurance, and community engagement for realistic simulation assets.",
+    description:
+      "Collaborated with IBS Gaming to create and publish professional ETS2 mods, contributing to asset development, quality assurance, and community engagement.",
     tag: "3D & Collaboration",
     techStack: ["Blender", "ETS2 SDK", "Substance Painter", "Community Management"],
-    link: "https://shopibs.in",
-    image: "/projects/ibs-gaming.png",
+    projectUrl: "https://shopibs.in",
   },
   {
     id: "brand-liveries",
     title: "Brand Advertising Liveries",
-    description: "Created custom advertising liveries for major gaming brands including Logitech, Booyah, and Loco. Designed high-resolution truck skins featuring brand identities, optimized for in-game visibility and promotional campaigns in ETS2.",
+    description:
+      "Created high-resolution advertising liveries for gaming brands including Logitech, Booyah, and Loco, optimized for in-game visibility and promotional campaigns.",
     tag: "Design & Branding",
     techStack: ["Photoshop", "Illustrator", "UV Mapping", "Brand Guidelines"],
-    link: "#projects",
-    image: "/projects/brand-liveries.png",
+    projectUrl: "#projects",
+    projectLabel: "View Collection",
   },
 ];
 
+export const workExperience: WorkExperience = {
+  company: "Maincrafts Technology",
+  role: "Cloud Computing & DevOps Intern",
+  period: "February 2026 - August 2026",
+  status: "Completed six-month internship",
+  summary:
+    "Supported production-minded cloud and deployment work while building practical experience across infrastructure, delivery pipelines, monitoring, and security.",
+  achievements: [
+    "Worked across AWS, Azure, GCP, Docker, Kubernetes, and Linux-based deployment environments.",
+    "Contributed to environment configuration, CI/CD, build and release validation, server deployment, monitoring, and technical documentation.",
+    "Developed practical awareness of access controls, credential safety, configuration risk, observability, and infrastructure security.",
+  ],
+  technologies: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Linux", "CI/CD", "Monitoring"],
+  credentialUrl: siteAssets.internshipCertificateHref,
+};
 
-// Hero content per persona
 export const heroContent = {
   engineer: {
     badge: "System Online",
-    title: "Building intelligent systems & secure platforms",
-    subtitle: "I create AI-powered applications, security tools, and full-stack platforms that solve real-world problems with elegant code.",
+    title: "Engineering secure, intelligent systems",
+    subtitle:
+      "I build AI-enabled products, cloud platforms, and security systems with production-ready architecture, observability, and reliable delivery in mind.",
     cta1: { label: "View Projects", href: "#projects" },
-    cta2: { label: "Download Resume", href: "/Krishna_Kapoor_Resume_2 .pdf" },
-    typingTexts: ["function_calling()", "vulnerability_scan()", "ai_inference()"],
+    cta2: { label: "Download Resume", href: siteAssets.resumeHref },
+    typingTexts: ["deploy_pipeline()", "vulnerability_scan()", "ai_inference()"],
   },
   creative: {
     badge: "Creative Mode",
     title: "Crafting immersive visuals & 3D experiences",
-    subtitle: "I design stunning 3D environments, simulation assets, and visual experiences that push the boundaries of digital creativity.",
+    subtitle:
+      "I create detailed simulation assets and visual experiences that balance realism, performance, and a clear creative point of view.",
     cta1: { label: "View Portfolio", href: "#projects" },
-    cta2: { label: "Contact Me", href: "#contact" },
+    cta2: { label: "Collaborate", href: "#contact" },
     typingTexts: ["render_scene()", "texture_paint()", "lighting_setup()"],
   },
 };
 
-// Skills per persona
 export const skills = {
   engineer: {
     title: "Engineering",
@@ -128,16 +197,21 @@ export const skills = {
   },
 };
 
-// About content per persona
 export const aboutContent = {
   engineer: {
     title: "Krishna Kapoor",
-    role: "AI Engineer & Security Specialist",
-    bio: "I am a software engineer with a strong focus on AI-driven systems, cybersecurity, and full-stack architecture. I enjoy working on problems that require thinking beyond features—considering system design, data flow, security, and performance from the start. My experience comes primarily from hands-on, project-based learning, where I have built real platforms involving AI integration, vulnerability scanning, and end-to-end application development. While my academic CGPA does not fully capture this depth, my work reflects a consistent focus on practical engineering, modern tooling, and production-oriented problem solving. I value clarity, reliability, and security, and I approach engineering as the discipline of building systems that can be trusted in real-world conditions.",
+    role: "Software Systems, Cloud & Security Engineer",
+    headline: "Building systems that stay secure, observable, and understandable.",
+    bio: "I work across software architecture, applied AI, cloud delivery, and cybersecurity. My projects turn complex workflows into practical products with explicit attention to reliability, access control, and real-world operation.",
+    strengths: ["AI-enabled product architecture", "Cloud, DevOps & observability", "Application and network security"],
+    closing: "I care about engineering that remains trustworthy after the demo is over.",
   },
   creative: {
     title: "Krishna Kapoor",
-    role: "3D Artist & Visual Designer",
-    bio: "I am a creative technologist with a strong background in 3D modeling, simulation design, and visual communication. I enjoy crafting digital experiences that balance realism, performance, and visual clarity, particularly in simulation and interactive environments. My work includes creating ETS2 mods, detailed 3D assets, and polished visual designs using Blender, Photoshop, and Illustrator. I approach design as a structured process—focused not only on aesthetics, but also on usability, optimization, and intent. I believe strong visuals are not decoration, but a way to communicate ideas clearly and make complex systems feel intuitive.",
+    role: "3D Artist & Creative Technologist",
+    headline: "Turning technical detail into expressive visual experiences.",
+    bio: "I create simulation assets, 3D models, and visual systems that balance realism with performance. My creative work combines structured production workflows with a strong eye for material, lighting, and brand detail.",
+    strengths: ["3D modeling & simulation assets", "PBR texturing & visual design", "Creative collaboration & optimization"],
+    closing: "The goal is always purposeful work that looks convincing and feels considered.",
   },
 };
