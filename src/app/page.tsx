@@ -9,6 +9,7 @@ import { ArticlesSection } from "@/components/ArticlesSection";
 import { CreativeGallery } from "@/components/CreativeGallery";
 import { FooterMarquee } from "@/components/FooterMarquee";
 import { Footer } from "@/components/Footer";
+import { WorkExperienceSection } from "@/components/WorkExperienceSection";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <SplitSection />
         <LinkedInNodeGraph />
         <AboutFlipCard />
+        <WorkExperienceSection />
         <ArticlesSection />
         <CreativeGallery />
         <FooterMarquee />

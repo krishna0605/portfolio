@@ -6,6 +6,7 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import { ScrambleText } from "./ui/ScrambleText";
 import { usePersona } from "./PersonaProvider";
+import { siteAssets } from "@/data/personaContent";
 
 // Engineering Skills Data - From Resume
 const engineerSkills = {
@@ -301,7 +302,7 @@ export const SplitSection = () => {
 
             <div className="mt-12">
                <a 
-                 href="/Krishna_Kapoor_Resume_2 .pdf"
+                 href={siteAssets.resumeHref}
                  download
                  className={clsx(
                    "inline-flex items-center gap-2 font-medium transition-colors text-sm",

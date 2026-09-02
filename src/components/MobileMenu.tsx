@@ -8,6 +8,7 @@ import { clsx } from "clsx";
 import { PersonaToggle } from "./PersonaToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { usePersona } from "./PersonaProvider";
+import { siteAssets } from "@/data/personaContent";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -124,7 +125,8 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
                        <Linkedin size={22} />
                     </Link>
                     <Link 
-                       href="mailto:krishnakapoor@example.com"
+                       href="mailto:creativesimulation1@gmail.com"
+                       aria-label="Email Krishna Kapoor"
                        className="p-3 hover:bg-foreground/10 rounded-md transition-colors text-foreground"
                     >
                        <Mail size={22} />
@@ -133,7 +135,7 @@ export const MobileMenu = ({ isOpen, onClose, menuItems }: MobileMenuProps) => {
 
                  {/* Resume Download CTA */}
                  <a 
-                    href="/Krishna_Kapoor_Resume_2 .pdf" 
+                    href={siteAssets.resumeHref}
                     download
                     className="flex items-center justify-center gap-2 w-full py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
                  >

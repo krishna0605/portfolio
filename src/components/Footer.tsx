@@ -2,16 +2,24 @@
 
 import React from "react";
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { usePersona } from "./PersonaProvider";
+import { siteAssets } from "@/data/personaContent";
 
-const footerLinks = [
+interface FooterLink {
+  label: string;
+  href: string;
+  engineerOnly?: boolean;
+}
+
+const footerLinks: Array<{ title: string; links: FooterLink[] }> = [
   {
     title: "Work",
     links: [
       { label: "Projects", href: "#projects" },
+      { label: "Experience", href: "#experience", engineerOnly: true },
       { label: "Skills", href: "#skills" },
-      { label: "Resume", href: "/Krishna_Kapoor_Resume_2 .pdf" },
+      { label: "Resume", href: siteAssets.resumeHref },
     ],
   },
   {
@@ -72,10 +80,13 @@ export const Footer = () => {
             >
               <h4 className="font-medium text-foreground mb-6">{column.title}</h4>
               <ul className="space-y-4">
-                {column.links.map((link) => (
+                {column.links
+                  .filter((link) => !link.engineerOnly || persona === "engineer")
+                  .map((link) => (
                   <li key={link.label}>
                     <Link 
                       href={link.href} 
+                      download={link.href.endsWith(".pdf") ? true : undefined}
                       className="text-sm text-foreground/60 hover:text-foreground transition-colors"
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                     >

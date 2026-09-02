@@ -2,19 +2,20 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Book, Box, Code, Cpu, Github, Layers, Terminal, Menu, X, Linkedin, Mail } from "lucide-react";
+import { Book, Box, Briefcase, Code, Cpu, Github, Layers, Terminal, Menu, X, Linkedin } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { PersonaToggle } from "./PersonaToggle";
 import { MobileMenu } from "./MobileMenu";
 import { usePersona } from "./PersonaProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
+import { siteAssets } from "@/data/personaContent";
 
 // Portfolio Menu Data with persona tags for projects
-const menuItems = {
+const navigationItems = {
   Projects: [
-    { title: "AI CodeMate", desc: "AI-powered code analysis platform", href: "#projects", icon: <Cpu />, persona: "engineer" as const },
-    { title: "Vuln Scanner", desc: "Automated security scanning", href: "#projects", icon: <Box />, persona: "engineer" as const },
+    { title: "NETRA", desc: "Network evidence and packet forensics", href: "#projects", icon: <Cpu />, persona: "engineer" as const },
+    { title: "NextStop.ai", desc: "AI meeting intelligence platform", href: "#projects", icon: <Box />, persona: "engineer" as const },
     { title: "ETS2 Mods", desc: "3D simulation assets", href: "#projects", icon: <Layers />, persona: "creative" as const },
   ],
   Skills: [
@@ -23,7 +24,8 @@ const menuItems = {
   ],
   About: [
     { title: "Background", desc: "Education & experience", href: "#about", icon: <Book /> },
-    { title: "Resume", desc: "Download my CV", href: "/Krishna_Kapoor_Resume_2 .pdf", icon: <Code /> },
+    { title: "Experience", desc: "Cloud Computing & DevOps internship", href: "#experience", icon: <Briefcase /> },
+    { title: "Resume", desc: "Download my CV", href: siteAssets.resumeHref, icon: <Code /> },
     { title: "Contact", desc: "Get in touch", href: "#contact", icon: <Terminal /> },
   ]
 };
@@ -46,6 +48,7 @@ const menuItems = {
                      <Link 
                         key={item.title} 
                         href={item.href}
+                        download={item.href.endsWith(".pdf") ? true : undefined}
                         onClick={() => onItemClick?.(item)}
                         className={clsx(
                            "group block p-8 border-b border-r border-grid-line/50 transition-all duration-200 relative",
@@ -73,7 +76,11 @@ const menuItems = {
 export const Navigation = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { setPersona } = usePersona();
+  const { persona, setPersona } = usePersona();
+  const menuItems = {
+    ...navigationItems,
+    About: navigationItems.About.filter((item) => item.title !== "Experience" || persona === "engineer"),
+  };
 
   // Handler to switch persona when clicking on project items
   const handleProjectClick = (item: any) => {
@@ -138,7 +145,7 @@ export const Navigation = () => {
           <div className="group relative rounded-sm p-[1px] transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
             <div className="absolute inset-0 rounded-sm bg-gradient-to-r from-blue-500 to-indigo-500 opacity-20 group-hover:opacity-100 transition-opacity duration-300" />
             <a 
-              href="/Krishna_Kapoor_Resume_2 .pdf" 
+              href={siteAssets.resumeHref}
               download
               className="relative px-4 py-2 block text-sm font-medium bg-[#DEE1E4] dark:bg-[#1a1a1a] text-black dark:text-white group-hover:text-white group-hover:bg-transparent transition-colors rounded-[1px] z-10"
             >
