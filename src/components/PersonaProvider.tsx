@@ -14,10 +14,8 @@ const PersonaContext = createContext<PersonaContextType | undefined>(undefined);
 
 export function PersonaProvider({ children }: { children: React.ReactNode }) {
   const [persona, setPersona] = useState<Persona>("engineer");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("persona") as Persona;
     if (saved && (saved === "engineer" || saved === "creative")) {
       setPersona(saved);
@@ -33,10 +31,6 @@ export function PersonaProvider({ children }: { children: React.ReactNode }) {
     const newPersona = persona === "engineer" ? "creative" : "engineer";
     handleSetPersona(newPersona);
   };
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <PersonaContext.Provider value={{ persona, setPersona: handleSetPersona, togglePersona }}>
