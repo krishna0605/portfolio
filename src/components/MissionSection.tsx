@@ -21,7 +21,9 @@ export const MissionSection = () => {
 
       <div className="max-w-[1400px] mx-auto w-full border-x border-black/10 relative z-10 grid grid-cols-1 md:grid-cols-2">
          {/* Left empty block for spacing/grid */}
-         <GridBlock label="MS-01 // CONTEXT" className="hidden md:block h-full border-black/10 border-r" />
+         <GridBlock label="MS-01 // CONTEXT" className="hidden md:block h-full border-black/10 border-r">
+           {null}
+         </GridBlock>
 
          {/* Right Main Content */}
          <div className="p-8 md:p-16 border-b border-black/10">
